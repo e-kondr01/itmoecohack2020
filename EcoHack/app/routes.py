@@ -18,7 +18,7 @@ def add_box():
     new_box = Boxe(place_id)
     db.session.add(new_box)
     db.session.commit()
-    return "Yay"
+    return make_response(jsonify({'Fine': 'Connected'}), 200)
 
 @app.route('/delete_box', methods=['GET', 'POST'])
 def delete_box():

@@ -30,3 +30,12 @@ class Boxe(db.Model):
     def __init__(self, place_id=None, is_full=False):
         self.place_id = place_id
         self.is_full = is_full
+
+class User(db.Model):
+    __tablename__ = "users"
+    user_id = db.Column(db.Integer, primary_key=True)
+    box_id = db.Column(db.Integer, db.ForeignKey('boxes.box_id'))
+    name = db.Column(db.Text)
+    surname = db.Column(db.Text)
+    email = db.Column(db.Text)
+    phone = db.Column(db.Text)
