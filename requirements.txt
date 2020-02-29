@@ -29,6 +29,6 @@ flask-moment==0.8.0
 flask-sqlalchemy==2.4.0
 flask-wtf==0.14.2
 gunicorn==20.0.4
-requests==2.18.4
+requests==2.20.0
 requests-oauthlib==1.3.0
 sqlalchemy==1.3.4
