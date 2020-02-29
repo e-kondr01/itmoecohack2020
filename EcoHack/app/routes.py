@@ -37,6 +37,19 @@ def box_is_full():
     box_id = request.args.get('box_id')
     box = db.session.query(Boxe).filter(Boxe.box_id == box_id).first()
     box.is_full = True
+    # New
+    # Получить здание, в котором полная коробка
+    place = db.session.query(Place).filter(Place.place_id == box.place_id).first()
+    building = db.session.query(Building).filter(Building.building_id == place.building_id).first()
+    # Сделать сложный запрос для всех коробок в том же здании
+    places_in_that_bld = db.session.query(Place).filter(Place.building_id == building.building_id).all()
+    boxes = []
+    for place in places_in_that_bld:
+        box = db.session.query(Boxe).filter(Boxe.place_id == place.place_id).filter(Boxe.is_full == 1)
+        boxes.append(box)
+    if len(boxes) >= enough_boxes[building] and not notified[building]:
+        notify(boxes=boxes, building_id=building.building_id)
+    # New
     db.session.commit()
     return box_id
 
