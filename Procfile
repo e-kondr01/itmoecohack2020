@@ -1,1 +1,1 @@
-web: python3 EcoHack/EcoHack.py
+worker: python3 EcoHack/EcoHack.py
