@@ -1,1 +1,1 @@
-web: python3 homework04/bot.py
+web: python3 ecohack/ecohack.py
