@@ -1,1 +1,1 @@
-web: gunicorn EcoHack:EcoHack/EcoHack.py 
+web: gunicorn EcoHack/app:app
