@@ -20,7 +20,6 @@ cairocffi==1.1.0
 certifi==2018.1.18
 cffi==1.13.2
 chardet==3.0.4
-checkbox-support==0.22
 command-not-found==0.3
 cryptography==2.8
 cycler==0.10.0
