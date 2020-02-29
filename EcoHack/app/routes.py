@@ -1,6 +1,7 @@
 from app import app
 from flask import render_template
 from flask import request
+from flask import make_response
 from app.models import db, Building, Place, Boxe
 
 
@@ -13,6 +14,7 @@ def index():
 
 @app.route('/add_box', methods=['GET', 'POST'])
 def add_box():
+    place_id = request.args.get('place_id')
     new_box = Boxe(place_id)
     db.session.add(new_box)
     db.session.commit()
@@ -25,9 +27,9 @@ def delete_box():
     if not box is None:
         db.session.delete(box)
         db.session.commit()
-        return 'Deleted'
+        return make_response(jsonify({'Fine': 'Deleted'}), 200)
     else:
-        return 'No such box'
+        return make_response(jsonify({'error': 'Not found'}), 404)
 
 
 @app.route('/box_is_full', methods=['GET', 'POST'])
@@ -46,9 +48,13 @@ def clear_boxes():
     for place in places:
         boxes = db.session.query(Boxe).filter(Boxe.place_id == place.place_id).all()
         for box in boxes:
-            box.is_full = False
-            db.session.commit()
-    return "Done"
+            clear_a_box(box)
+    return make_response(jsonify({'Done': 'Done'}), 404)
+
+
+def clear_a_box(box):
+    box.is_full = False
+    db.session.commit()
 
 @app.route('/get_boxes')
 def get_boxes():
