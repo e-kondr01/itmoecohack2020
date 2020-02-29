@@ -1,6 +1,5 @@
 absl-py==0.1.13
 alembic==1.0.10
-apturl==0.5.2
 arrow==0.15.4
 astor==0.6.2
 astroid==1.6.2
