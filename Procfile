@@ -1,1 +1,1 @@
-worker: python3 EcoHack/EcoHack.py
+web: gunicorn app: EcoHack/EcoHack.py
